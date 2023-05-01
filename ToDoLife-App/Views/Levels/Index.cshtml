@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ToDoLife_App.Models.ToDo>
+﻿@model IEnumerable<ToDoLife_App.Models.Level>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,10 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.LevelTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DueDate)
+                @Html.DisplayNameFor(model => model.LevelNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LevelDescription)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Points)
@@ -28,10 +31,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.LevelTitle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DueDate)
+                @Html.DisplayFor(modelItem => item.LevelNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LevelDescription)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Points)

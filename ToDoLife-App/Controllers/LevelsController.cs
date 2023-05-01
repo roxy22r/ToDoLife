@@ -5,95 +5,91 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ToDoLife_App.Areas;
 using ToDoLife_App.Data;
-using ToDoLife_App.Models;
 
-namespace ToDoLife_App.Controllers
+namespace ToDoLife_App.Models
 {
-    public class ToDosController : Controller
+    public class LevelsController : Controller
     {
-        private ApplicationUserService userService = new ApplicationUserService();
-
         private readonly ApplicationDbContext _context;
 
-        public ToDosController(ApplicationDbContext context)
+        public LevelsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: ToDos
+        // GET: Levels
         public async Task<IActionResult> Index()
         {
-              return _context.ToDo != null ? 
-                          View(await _context.ToDo.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.ToDo'  is null.");
+              return _context.Level != null ? 
+                          View(await _context.Level.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Level'  is null.");
         }
 
-        // GET: ToDos/Details/5
+        // GET: Levels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.ToDo == null)
+            if (id == null || _context.Level == null)
             {
                 return NotFound();
             }
 
-            var toDo = await _context.ToDo
+            var level = await _context.Level
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (toDo == null)
+            if (level == null)
             {
                 return NotFound();
             }
 
-            return View(toDo);
+            return View(level);
         }
 
-        // GET: ToDos/Create
+        // GET: Levels/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ToDos/Create
+        // POST: Levels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,TodoTitle,DueDate,prices")] ToDo toDo)
+        public async Task<IActionResult> Create([Bind("Id,LevelTitle,LevelNumber,LevelDescription,Points")] Level level)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(toDo);
+                _context.Add(level);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(toDo);
+            return View(level);
         }
 
-        // GET: ToDos/Edit/5
+        // GET: Levels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.ToDo == null)
+            if (id == null || _context.Level == null)
             {
                 return NotFound();
             }
 
-            var toDo = await _context.ToDo.FindAsync(id);
-            if (toDo == null)
+            var level = await _context.Level.FindAsync(id);
+            if (level == null)
             {
                 return NotFound();
             }
-            return View(toDo);
+            return View(level);
         }
 
-        // POST: ToDos/Edit/5
+        // POST: Levels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TodoTitle,DueDate,prices")] ToDo toDo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,LevelTitle,LevelNumber,LevelDescription,Points")] Level level)
         {
-            if (id != toDo.Id)
+            if (id != level.Id)
             {
                 return NotFound();
             }
@@ -102,12 +98,12 @@ namespace ToDoLife_App.Controllers
             {
                 try
                 {
-                    _context.Update(toDo);
+                    _context.Update(level);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ToDoExists(toDo.Id))
+                    if (!LevelExists(level.Id))
                     {
                         return NotFound();
                     }
@@ -118,55 +114,58 @@ namespace ToDoLife_App.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(toDo);
+            return View(level);
         }
 
-        // GET: ToDos/Delete/5
+        // GET: Levels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.ToDo == null)
+            if (id == null || _context.Level == null)
             {
                 return NotFound();
             }
 
-            var toDo = await _context.ToDo
+            var level = await _context.Level
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (toDo == null)
+            if (level == null)
             {
                 return NotFound();
             }
 
-            return View(toDo);
+            return View(level);
         }
 
-        // POST: ToDos/Delete/5
+        // POST: Levels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.ToDo == null)
+            if (_context.Level == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.ToDo'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Level'  is null.");
             }
-            var toDo = await _context.ToDo.FindAsync(id);
-            if (toDo != null)
+            var level = await _context.Level.FindAsync(id);
+            if (level != null)
             {
-                _context.ToDo.Remove(toDo);
+                _context.Level.Remove(level);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ToDoExists(int id)
+        private bool LevelExists(int id)
         {
-          return (_context.ToDo?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Level?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+        public void setPrice(Guid levelId, Price price)
+        {
+            if (_context.Level!=null) {
+                Level level = _context.Level.Where(level => level.Id.Equals(levelId))//
+                      .First();
+                level.Price = price;
+            }
         }
 
-        private void setTaskCompleted(int todoId,int points) {
-            _context.ToDo.Where(e => e.Id == todoId).First().IsCompleted = true;
-            _context.SaveChanges();
-            userService.addPoints(points);
     }
-}
 }

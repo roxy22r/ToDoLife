@@ -11,89 +11,86 @@ using ToDoLife_App.Models;
 
 namespace ToDoLife_App.Controllers
 {
-    public class ToDosController : Controller
+    public class PricesController : Controller
     {
-        private ApplicationUserService userService = new ApplicationUserService();
-
         private readonly ApplicationDbContext _context;
-
-        public ToDosController(ApplicationDbContext context)
+        public PricesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: ToDos
+        // GET: Prices
         public async Task<IActionResult> Index()
         {
-              return _context.ToDo != null ? 
-                          View(await _context.ToDo.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.ToDo'  is null.");
+              return _context.Price != null ? 
+                          View(await _context.Price.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Price'  is null.");
         }
 
-        // GET: ToDos/Details/5
+        // GET: Prices/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.ToDo == null)
+            if (id == null || _context.Price == null)
             {
                 return NotFound();
             }
 
-            var toDo = await _context.ToDo
+            var price = await _context.Price
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (toDo == null)
+            if (price == null)
             {
                 return NotFound();
             }
 
-            return View(toDo);
+            return View(price);
         }
 
-        // GET: ToDos/Create
+        // GET: Prices/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ToDos/Create
+        // POST: Prices/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,TodoTitle,DueDate,prices")] ToDo toDo)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description")] Price price)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(toDo);
+                _context.Add(price);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(toDo);
+            return View(price);
         }
 
-        // GET: ToDos/Edit/5
+        // GET: Prices/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.ToDo == null)
+            if (id == null || _context.Price == null)
             {
                 return NotFound();
             }
 
-            var toDo = await _context.ToDo.FindAsync(id);
-            if (toDo == null)
+            var price = await _context.Price.FindAsync(id);
+            if (price == null)
             {
                 return NotFound();
             }
-            return View(toDo);
+            return View(price);
         }
 
-        // POST: ToDos/Edit/5
+        // POST: Prices/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TodoTitle,DueDate,prices")] ToDo toDo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description")] Price price)
         {
-            if (id != toDo.Id)
+            if (id != price.Id)
             {
                 return NotFound();
             }
@@ -102,12 +99,12 @@ namespace ToDoLife_App.Controllers
             {
                 try
                 {
-                    _context.Update(toDo);
+                    _context.Update(price);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ToDoExists(toDo.Id))
+                    if (!PriceExists(price.Id))
                     {
                         return NotFound();
                     }
@@ -118,55 +115,50 @@ namespace ToDoLife_App.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(toDo);
+            return View(price);
         }
 
-        // GET: ToDos/Delete/5
+        // GET: Prices/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.ToDo == null)
+            if (id == null || _context.Price == null)
             {
                 return NotFound();
             }
 
-            var toDo = await _context.ToDo
+            var price = await _context.Price
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (toDo == null)
+            if (price == null)
             {
                 return NotFound();
             }
 
-            return View(toDo);
+            return View(price);
         }
 
-        // POST: ToDos/Delete/5
+        // POST: Prices/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.ToDo == null)
+            if (_context.Price == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.ToDo'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Price'  is null.");
             }
-            var toDo = await _context.ToDo.FindAsync(id);
-            if (toDo != null)
+            var price = await _context.Price.FindAsync(id);
+            if (price != null)
             {
-                _context.ToDo.Remove(toDo);
+                _context.Price.Remove(price);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ToDoExists(int id)
+        private bool PriceExists(int id)
         {
-          return (_context.ToDo?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Price?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-
-        private void setTaskCompleted(int todoId,int points) {
-            _context.ToDo.Where(e => e.Id == todoId).First().IsCompleted = true;
-            _context.SaveChanges();
-            userService.addPoints(points);
+       
     }
-}
 }
