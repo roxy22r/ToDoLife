@@ -17,3 +17,24 @@ body {
   margin-bottom: 60px;
   background-color: lightgrey;
 }
+label{
+    font-weight: bold;
+}
+.form-control{
+    background-color: darkgray;
+    color: white
+}
+.form-group{
+    text-align: center;
+}
+table{
+    background-color: darkgrey;
+}
+th {
+    color: black;
+    text-align: center;
+}
+td {
+    color: black;
+    text-align: center;
+}
