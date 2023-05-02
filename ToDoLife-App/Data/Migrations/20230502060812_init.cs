@@ -4,7 +4,7 @@
 
 namespace ToDoLife_App.Data.Migrations
 {
-    public partial class Price : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -289,6 +289,9 @@ namespace ToDoLife_App.Data.Migrations
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("Points")
                         .HasColumnType("int");
 

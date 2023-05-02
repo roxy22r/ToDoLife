@@ -12,8 +12,8 @@ using ToDoLife_App.Data;
 namespace ToDoLife_App.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230501195630_User_2")]
-    partial class User_2
+    [Migration("20230502060812_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -291,13 +291,16 @@ namespace ToDoLife_App.Data.Migrations
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TodoTitle")
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("Points")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("prices")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
