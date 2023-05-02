@@ -10,7 +10,7 @@ namespace ToDoLife_App.Models
 
         [StringLength(100, MinimumLength = 3)]
         [Required]
-        public string Title { get; set; } = string.Empty;
+        public string Title { get; set; }
 
         [Display(Name = "Erledigen bis")]
         [DataType(DataType.Date)]

@@ -273,3 +273,7 @@ C:\Users\Till Strasser\source\repos\ToDoLife-App\ToDoLife-App\bin\Debug\net6.0\M
 C:\Users\Till Strasser\source\repos\ToDoLife-App\ToDoLife-App\bin\Debug\net6.0\Microsoft.Build.Framework.dll
 C:\Users\Till Strasser\source\repos\ToDoLife-App\ToDoLife-App\bin\Debug\net6.0\Microsoft.NET.StringTools.dll
 C:\Users\Till Strasser\source\repos\ToDoLife-App\ToDoLife-App\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll
+C:\Users\Till Strasser\source\repos\ToDoLife-App\ToDoLife-App\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Till Strasser\source\repos\ToDoLife-App\ToDoLife-App\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Till Strasser\source\repos\ToDoLife-App\ToDoLife-App\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Till Strasser\source\repos\ToDoLife-App\ToDoLife-App\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll

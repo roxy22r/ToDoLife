@@ -91,7 +91,7 @@ namespace ToDoLife_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TodoTitle,DueDate,prices")] ToDo toDo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,DueDate,Points")] ToDo toDo)
         {
             if (id != toDo.Id)
             {
