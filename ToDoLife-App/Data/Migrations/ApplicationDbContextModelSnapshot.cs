@@ -8,7 +8,7 @@ using ToDoLife_App.Data;
 
 #nullable disable
 
-namespace ToDoLife_App.Data.Migrations
+namespace ToDoLife_App.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -247,7 +247,7 @@ namespace ToDoLife_App.Data.Migrations
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
-                    b.Property<int>("PriceId")
+                    b.Property<int?>("PriceId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -360,9 +360,7 @@ namespace ToDoLife_App.Data.Migrations
                 {
                     b.HasOne("ToDoLife_App.Models.Price", "Price")
                         .WithMany()
-                        .HasForeignKey("PriceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PriceId");
 
                     b.Navigation("Price");
                 });
