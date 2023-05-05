@@ -33,8 +33,26 @@ table{
 th {
     color: black;
     text-align: center;
+    border: solid 1px black;
 }
 td {
     color: black;
     text-align: center;
+    border: solid 1px black;
+}
+button{
+background-color: lightgray;
+text-align: center;
+
+}
+header{
+    background-color: black;
+}
+.container-fluid{
+    background-color:  lightsteelblue;
+}
+a{
+    color: royalblue;
+    text-decoration: none;
+    font-weight: bold;
 }
