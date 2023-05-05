@@ -5,109 +5,108 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ToDoLife_App
 build_property.RootNamespace = ToDoLife_App
-build_property.ProjectDir = c:\Users\KIM\Desktop\ToDoLifeApp-M306\ToDoLife-App\
+build_property.ProjectDir = C:\Users\Till Strasser\source\repos\ToDoLife-App\ToDoLife-App\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = c:\Users\KIM\Desktop\ToDoLifeApp-M306\ToDoLife-App
+build_property.MSBuildProjectDirectory = C:\Users\Till Strasser\source\repos\ToDoLife-App\ToDoLife-App
 build_property._RazorSourceGeneratorDebug = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Home/Index.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Home/Privacy.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Levels/Create.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Levels/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGV2ZWxzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Levels/Delete.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Levels/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGV2ZWxzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Levels/Details.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Levels/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGV2ZWxzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Levels/Edit.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Levels/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGV2ZWxzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Levels/Index.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Levels/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGV2ZWxzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Prices/Create.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Prices/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpY2VzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Prices/Delete.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Prices/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpY2VzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Prices/Details.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Prices/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpY2VzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Prices/Edit.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Prices/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpY2VzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Prices/Index.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Prices/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpY2VzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Shared/Error.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/ToDos/Create.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/ToDos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9Eb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/ToDos/Delete.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/ToDos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9Eb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/ToDos/Details.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/ToDos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9Eb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/ToDos/Edit.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/ToDos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9Eb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/ToDos/Index.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/ToDos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9Eb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/_ViewImports.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/_ViewStart.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/KIM/Desktop/ToDoLifeApp-M306/ToDoLife-App/Views/Shared/_Layout.cshtml]
+[C:/Users/Till Strasser/source/repos/ToDoLife-App/ToDoLife-App/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-4ec0x7rl46
