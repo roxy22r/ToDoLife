@@ -18,6 +18,6 @@ namespace ToDoLife_App.Models
         [Display(Name = "Level-Points to reach")]
         public int Points { get; set; }
         //[Required]
-        public Price? Price { get;  set; }
+        public List<Price> Price { get;  set; }
     }
 }

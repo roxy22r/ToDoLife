@@ -58,7 +58,7 @@ namespace ToDoLife_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description")] Price price)
+        public async Task<IActionResult> Create([Bind("levelNr")] int levelNr,[Bind("Id,Title,Description")] Price price)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace ToDoLife_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description")] Price price)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Level.Id")] Price price)
         {
             if (id != price.Id)
             {

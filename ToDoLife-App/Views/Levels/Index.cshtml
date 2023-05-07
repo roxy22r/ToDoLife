@@ -24,6 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Points)
             </th>
+               <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -41,6 +44,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Points)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Price)
+                <a  asp-controller="Prices"asp-action="Create">Price</a> 
+
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

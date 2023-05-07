@@ -77,7 +77,7 @@ namespace ToDoLife_App.Models
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,LevelTitle,LevelNumber,LevelDescription,Points")] Level level)
+        public async Task<IActionResult> Create([Bind("Id,LevelTitle,LevelNumber,LevelDescription,Points,Price")] Level level)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace ToDoLife_App.Models
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,LevelTitle,LevelNumber,LevelDescription,Points")] Level level)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,LevelTitle,LevelNumber,LevelDescription,Points,Price")] Level level)
         {
             if (id != level.Id)
             {
@@ -185,7 +185,7 @@ namespace ToDoLife_App.Models
             if (_context.Level!=null) {
                 Level level = _context.Level.Where(level => level.Id.Equals(levelId))//
                       .First();
-                level.Price = price;
+                level.Price.Add(price);
             }
         }
 
