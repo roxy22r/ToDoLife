@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ToDoLife_App.Areas;
+using ToDoLife_App.Controllers.Levels;
 using ToDoLife_App.Data;
 
 namespace ToDoLife_App.Models
@@ -14,15 +17,32 @@ namespace ToDoLife_App.Models
     public class LevelsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private ApplicationUserService _service;
+        private readonly IConfiguration _config;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public LevelsController(ApplicationDbContext context)
+        public LevelsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IConfiguration config)
         {
+            _config = config;
+            _userManager = userManager;
             _context = context;
         }
 
+        private void intUser()
+        {
+            var user = _userManager.FindByNameAsync(User.Identity.Name);
+            _service = new ApplicationUserService(user.Result);
+
+        }
         // GET: Levels
         public async Task<IActionResult> Index()
         {
+            intUser();
+            if (_context.Level.Count()==0 ||! _context.Level.Any(level=> level.User.Equals(_service.ApplicationUser.Id))) {
+
+                GenerateLevels.generateLevels(_context, _service.ApplicationUser.Id);
+            }
+
               return _context.Level != null ? 
                           View(await _context.Level.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Level'  is null.");
