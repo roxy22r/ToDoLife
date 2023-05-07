@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDoLife_App.Data;
 
@@ -11,9 +12,10 @@ using ToDoLife_App.Data;
 namespace ToDoLife_App.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230507152835_UserConfig2")]
+    partial class UserConfig2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -259,9 +261,6 @@ namespace ToDoLife_App.Migrations
 
                     b.Property<int?>("PriceId")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("User")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

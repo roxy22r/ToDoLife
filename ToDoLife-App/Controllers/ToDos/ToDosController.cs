@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ToDoLife_App.Areas;
+using ToDoLife_App.Controllers.UserProgammConfig;
 using ToDoLife_App.Data;
 using ToDoLife_App.Models;
 
@@ -20,7 +21,7 @@ namespace ToDoLife_App.Controllers
         private readonly IConfiguration _config;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
-        private bool isFilterOn = false;
+        private ServiceUserProgrammConfig userConfig;
 
         public ToDosController(ApplicationDbContext context, IConfiguration configuration,
         UserManager<ApplicationUser> userManager)
@@ -35,7 +36,7 @@ namespace ToDoLife_App.Controllers
             var connectionstring = _config.GetConnectionString("DefaultConnection");
             var user = _userManager.FindByNameAsync(User.Identity.Name);
             _service = new ApplicationUserService(user.Result);
-
+            userConfig = new ServiceUserProgrammConfig(_context,user.Result.Id);
 
         }
         // GET: ToDos
@@ -45,8 +46,8 @@ namespace ToDoLife_App.Controllers
 
             if (_context.ToDo != null ) {
 
-                if (isFilterOn) {
-                    var todo = getTodosOfUser().Where(todo => todo.DueDate.Day.Equals(DateTime.Now.Day));
+                if (userConfig.getConfig().FilterTodoListIsCompleted) {
+                    var todo = getTodosOfUser().Where(todo => !todo.IsCompleted);
                  return   View(todo);
                 }
                 else
@@ -230,12 +231,12 @@ namespace ToDoLife_App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost, ActionName("FilterByDone")]
+        [HttpPost, ActionName("FilterByIsCompleted")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> FilterByDone()
         {
-          this.isFilterOn = !isFilterOn;
-         
+            intUser();
+            userConfig.getConfig().FilterTodoListIsCompleted =! userConfig.getConfig().FilterTodoListIsCompleted;         
             _context.SaveChanges();
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
