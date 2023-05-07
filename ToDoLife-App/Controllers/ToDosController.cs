@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,21 +16,55 @@ namespace ToDoLife_App.Controllers
     [Authorize]
     public class ToDosController : Controller
     {
-        private ApplicationUserService userService = new ApplicationUserService();
-
+        private ApplicationUserService _service;
+        private readonly IConfiguration _config;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
+        private bool isFilterOn = false;
 
-        public ToDosController(ApplicationDbContext context)
+        public ToDosController(ApplicationDbContext context, IConfiguration configuration,
+        UserManager<ApplicationUser> userManager)
         {
+            _config = configuration;
+            _userManager = userManager;
             _context = context;
         }
 
+        private void intUser()
+        {
+            var connectionstring = _config.GetConnectionString("DefaultConnection");
+            var user = _userManager.FindByNameAsync(User.Identity.Name);
+            _service = new ApplicationUserService(user.Result);
+
+
+        }
         // GET: ToDos
         public async Task<IActionResult> Index()
         {
-              return _context.ToDo != null ? 
-                          View(await _context.ToDo.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.ToDo'  is null.");
+            intUser();
+
+            if (_context.ToDo != null ) {
+
+                if (isFilterOn) {
+                    var todo = getTodosOfUser().Where(todo => todo.DueDate.Day.Equals(DateTime.Now.Day));
+                 return   View(todo);
+                }
+                else
+                {
+                    return View(getTodosOfUser());
+
+                }
+            }
+            else
+            {
+                return Problem("Entity set 'ApplicationDbContext.ToDo'  is null.");
+
+            }
+        }
+    
+
+        private IQueryable<ToDo> getTodosOfUser() {
+            return _context.ToDo.Where(todo => todo.createdByUser.Equals(_service.ApplicationUser.Id));
         }
 
         // GET: ToDos/Details/5
@@ -63,8 +98,11 @@ namespace ToDoLife_App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,DueDate,Points")] ToDo toDo)
         {
+            intUser();
+
             if (ModelState.IsValid)
             {
+                toDo.createdByUser = _service.ApplicationUser.Id;
                 _context.Add(toDo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -95,6 +133,7 @@ namespace ToDoLife_App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,DueDate,Points")] ToDo toDo)
         {
+            intUser();
             if (id != toDo.Id)
             {
                 return NotFound();
@@ -104,6 +143,7 @@ namespace ToDoLife_App.Controllers
             {
                 try
                 {
+                    toDo.createdByUser = _service.ApplicationUser.Id;
                     _context.Update(toDo);
                     await _context.SaveChangesAsync();
                 }
@@ -165,10 +205,40 @@ namespace ToDoLife_App.Controllers
           return (_context.ToDo?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        private void setTaskCompleted(int todoId,int points) {
-            _context.ToDo.Where(e => e.Id == todoId).First().IsCompleted = true;
+
+        [HttpPost, ActionName("setTaskCompleted")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> setTaskCompleted(int? Id)
+        {
+            intUser();
+            ToDo todo = await _context.ToDo.FindAsync(Id);
+            todo.IsCompleted = !todo.IsCompleted;
+            if (null != todo.Points)
+            {
+                int points = (int)(todo.Points);
+                if (todo.IsCompleted)
+                {
+                   _service.addPoints(points);
+                }
+                else
+                {
+                    _service.subtractPoints(points);
+                }
+            }
             _context.SaveChanges();
-            userService.addPoints(points);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost, ActionName("FilterByDone")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> FilterByDone()
+        {
+          this.isFilterOn = !isFilterOn;
+         
+            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
-}
 }
