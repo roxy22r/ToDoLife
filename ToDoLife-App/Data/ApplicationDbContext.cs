@@ -16,5 +16,6 @@ namespace ToDoLife_App.Data
         public DbSet<ToDoLife_App.Models.ToDo>? ToDo { get; set; }
         public DbSet<ToDoLife_App.Models.Level>? Level { get; set; }
         public DbSet<ToDoLife_App.Models.Price>? Price { get; set; }
+        public DbSet<ToDoLife_App.Models.UserProgrammConfig>? UserProgrammConfig { get; set; }
     }
 }
