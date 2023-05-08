@@ -9,9 +9,15 @@
 <button>
     <a asp-action="Create">Create New</a>
 </button>
-    <form asp-action="FilterByIsCompleted">
-        <input type="submit" value="FilterByIsCompleted" class="btn btn-danger" /> |
-    </form> 
+
+<form asp-action="FilterByIsCompleted">
+    <input type="submit" value="FilterByIsCompleted" class="btn btn-danger" /> |
+</form> 
+
+<button>
+    <a asp-action="index" asp-route-today="true">ToDosOfToday</a>
+</button>
+
 <table class="table">
     <thead>
         <tr>
