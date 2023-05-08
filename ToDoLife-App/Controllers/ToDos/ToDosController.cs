@@ -40,7 +40,7 @@ namespace ToDoLife_App.Controllers
 
         }
         // GET: ToDos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool? today)
         {
             intUser();
 
@@ -49,6 +49,11 @@ namespace ToDoLife_App.Controllers
                 if (userConfig.getConfig().FilterTodoListIsCompleted) {
                     var todo = getTodosOfUser().Where(todo => !todo.IsCompleted);
                  return   View(todo);
+                }
+                else if (today == true)
+                {
+                    var todo = getTodosOfUser().Where(todo => !todo.IsCompleted && todo.DueDate == DateTime.Today);
+                    return View(todo);
                 }
                 else
                 {
