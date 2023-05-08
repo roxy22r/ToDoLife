@@ -8,6 +8,6 @@ namespace ToDoLife_App.Areas
         public int TotalCollectedPoints { get; set; }
         public Level? CurrentLevel { get; set; }
         public int CurrentPoints { get; set; }
-        
+
     }
 }

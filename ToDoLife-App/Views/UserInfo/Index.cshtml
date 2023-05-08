@@ -1,0 +1,34 @@
+﻿@model ToDoLife_App.Areas.UserInfoDto
+
+@{
+    ViewData["Title"] = "User-Info";
+}
+
+<h1>ToDo-List</h1>
+
+<button>
+    <a asp-action="Create">Create New</a>
+</button>
+
+<form asp-action="FilterByIsCompleted">
+    <input type="submit" value="FilterByIsCompleted" class="btn btn-danger" /> |
+</form> 
+
+<button>
+    <a asp-action="index" asp-route-today="true">ToDosOfToday</a>
+</button>
+
+<table class="table">
+ 
+                @Html.DisplayNameFor(model => model.Level.LevelNumber)
+                @Html.DisplayFor(model => model.Level.LevelNumber)
+
+
+                @Html.DisplayNameFor(model => model.Level.LevelTitle)
+                @Html.DisplayFor(model => model.Level.LevelTitle)
+
+               
+                @Html.DisplayNameFor(model => model.scoreToReachNextLevel)
+                @Html.DisplayFor(model => model.scoreToReachNextLevel)
+
+</table>

@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using ToDoLife_App.Areas;
-using ToDoLife_App.Data;
-
-namespace ToDoLife_App.Areas
+﻿namespace ToDoLife_App.Areas
 {
     /*
      * WebPage info to get current user in ASP .Net MVC application
@@ -24,9 +20,9 @@ namespace ToDoLife_App.Areas
         public ApplicationUser ApplicationUser { get => readOnlyUser; }
         public void addPoints(int points)
         {
-           _appUser.CurrentPoints += points;
-           _appUser.TotalCollectedPoints += points;
-            
+            _appUser.CurrentPoints += points;
+            _appUser.TotalCollectedPoints += points;
+
         }
 
         public void subtractPoints(int points)
