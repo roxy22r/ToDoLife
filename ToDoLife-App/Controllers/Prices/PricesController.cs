@@ -97,7 +97,8 @@ namespace ToDoLife_App.Controllers
                 return NotFound();
             }
 
-            var price = await _context.Price.FindAsync(id);
+            Price price = await _context.Price.Include(p=>p.Level).Where(p=>p.Id==id).FirstAsync();
+
             if (price == null)
             {
                 return NotFound();
@@ -112,16 +113,19 @@ namespace ToDoLife_App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description")] Price price)
         {
+            intUser();
+
             if (id != price.Id)
             {
                 return NotFound();
             }
-
+            ModelState.Remove("Level");
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(price);
+                    price.User=_service.ApplicationUser.Id;
+                    _context.Price.Update(price);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
