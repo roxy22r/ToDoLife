@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ToDoLife_App.Areas;
 using ToDoLife_App.Controllers.UserProgammConfig;
@@ -36,7 +31,7 @@ namespace ToDoLife_App.Controllers
             var connectionstring = _config.GetConnectionString("DefaultConnection");
             var user = _userManager.FindByNameAsync(User.Identity.Name);
             _service = new ApplicationUserService(user.Result);
-            userConfig = new ServiceUserProgrammConfig(_context,user.Result.Id);
+            userConfig = new ServiceUserProgrammConfig(_context, user.Result.Id);
 
         }
         // GET: ToDos
@@ -44,11 +39,13 @@ namespace ToDoLife_App.Controllers
         {
             intUser();
 
-            if (_context.ToDo != null ) {
+            if (_context.ToDo != null)
+            {
 
-                if (userConfig.getConfig().FilterTodoListIsCompleted) {
+                if (userConfig.getConfig().FilterTodoListIsCompleted)
+                {
                     var todo = getTodosOfUser().Where(todo => !todo.IsCompleted);
-                 return   View(todo);
+                    return View(todo);
                 }
                 else if (today == true)
                 {
@@ -67,9 +64,10 @@ namespace ToDoLife_App.Controllers
 
             }
         }
-    
 
-        private IQueryable<ToDo> getTodosOfUser() {
+
+        private IQueryable<ToDo> getTodosOfUser()
+        {
             return _context.ToDo.Where(todo => todo.createdByUser.Equals(_service.ApplicationUser.Id));
         }
 
@@ -201,14 +199,14 @@ namespace ToDoLife_App.Controllers
             {
                 _context.ToDo.Remove(toDo);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ToDoExists(int id)
         {
-          return (_context.ToDo?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.ToDo?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
 
@@ -224,7 +222,7 @@ namespace ToDoLife_App.Controllers
                 int points = (int)(todo.Points);
                 if (todo.IsCompleted)
                 {
-                   _service.addPoints(points);
+                    _service.addPoints(points);
                 }
                 else
                 {
@@ -241,7 +239,7 @@ namespace ToDoLife_App.Controllers
         public async Task<IActionResult> FilterByDone()
         {
             intUser();
-            userConfig.getConfig().FilterTodoListIsCompleted =! userConfig.getConfig().FilterTodoListIsCompleted;         
+            userConfig.getConfig().FilterTodoListIsCompleted = !userConfig.getConfig().FilterTodoListIsCompleted;
             _context.SaveChanges();
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
