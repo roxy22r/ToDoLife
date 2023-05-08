@@ -20,5 +20,21 @@ namespace ToDoLife_App.Controllers.Levels
                 context.SaveChanges();
             }
         }
+
+        public static Level generateLevel(ApplicationDbContext context, Guid user,int levelNr)
+        {
+            Level initLevel = new Level()
+            {
+                LevelNumber = levelNr,
+                LevelTitle = levelNr.ToString(),
+                Points = levelNr * 20 + 23,
+                User = user,
+                LevelDescription = "",
+            };
+            context.Add(initLevel);
+            context.SaveChanges();
+            return initLevel;
+        
+    }
     }
 }
