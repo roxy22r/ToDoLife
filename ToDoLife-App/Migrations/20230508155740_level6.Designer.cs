@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDoLife_App.Data;
 
@@ -11,9 +12,10 @@ using ToDoLife_App.Data;
 namespace ToDoLife_App.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230508155740_level6")]
+    partial class level6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -277,19 +279,11 @@ namespace ToDoLife_App.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LevelId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("User")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("LevelId");
 
                     b.ToTable("Price");
                 });
@@ -404,17 +398,6 @@ namespace ToDoLife_App.Migrations
                         .HasForeignKey("CurrentLevelId");
 
                     b.Navigation("CurrentLevel");
-                });
-
-            modelBuilder.Entity("ToDoLife_App.Models.Price", b =>
-                {
-                    b.HasOne("ToDoLife_App.Models.Level", "Level")
-                        .WithMany()
-                        .HasForeignKey("LevelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Level");
                 });
 #pragma warning restore 612, 618
         }

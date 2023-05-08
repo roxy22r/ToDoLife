@@ -185,8 +185,12 @@ namespace ToDoLife_App.Models
             if (_context.Level!=null) {
                 Level level = _context.Level.Where(level => level.Id.Equals(levelId))//
                       .First();
-                level.Price = price;
             }
+        }
+
+        public static Level getLevel(ApplicationDbContext context, int levelNr,Guid user) {
+
+            return context.Level.Where(l => l.Id.Equals(user)).First(l => l.LevelNumber == levelNr);
         }
 
     }
