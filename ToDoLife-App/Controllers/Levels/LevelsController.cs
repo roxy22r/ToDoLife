@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ToDoLife_App.Areas;
 using ToDoLife_App.Controllers.Levels;
@@ -38,14 +33,15 @@ namespace ToDoLife_App.Models
         public async Task<IActionResult> Index()
         {
             intUser();
-            if (_context.Level.Count()==0 ||! _context.Level.Any(level=> level.User.Equals(_service.ApplicationUser.Id))) {
+            if (_context.Level.Count() == 0 || !_context.Level.Any(level => level.User.Equals(_service.ApplicationUser.Id)))
+            {
 
                 GenerateLevels.generateLevels(_context, _service.ApplicationUser.Id);
             }
 
-              return _context.Level != null ? 
-                          View(await _context.Level.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Level'  is null.");
+            return _context.Level != null ?
+                        View(await _context.Level.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Level'  is null.");
         }
 
         // GET: Levels/Details/5
@@ -171,18 +167,19 @@ namespace ToDoLife_App.Models
             {
                 _context.Level.Remove(level);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool LevelExists(int id)
         {
-          return (_context.Level?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Level?.Any(e => e.Id == id)).GetValueOrDefault();
         }
         public void setPrice(Guid levelId, Price price)
         {
-            if (_context.Level!=null) {
+            if (_context.Level != null)
+            {
                 Level level = _context.Level.Where(level => level.Id.Equals(levelId))//
                       .First();
             }

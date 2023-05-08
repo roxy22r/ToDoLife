@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using ToDoLife_App.Data;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
 using ToDoLife_App.Areas;
+using ToDoLife_App.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
