@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ToDoLife_App.Areas;
+using ToDoLife_App.Controllers.Prices;
 using ToDoLife_App.Data;
 using ToDoLife_App.Models;
 
@@ -16,16 +18,34 @@ namespace ToDoLife_App.Controllers
     public class PricesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public PricesController(ApplicationDbContext context)
+        private ApplicationUserService _service;
+        private readonly IConfiguration _config;
+        private readonly UserManager<ApplicationUser> _userManager;
+        public PricesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IConfiguration config)
         {
+            _config = config;
+            _userManager = userManager;
             _context = context;
+        }
+        private void intUser()
+        {
+            var user = _userManager.FindByNameAsync(User.Identity.Name);
+            _service = new ApplicationUserService(user.Result);
+
         }
 
         // GET: Prices
         public async Task<IActionResult> Index()
         {
+            intUser();
+            if (!_context.Price.Any(p=>p.User.Equals(_service.ApplicationUser.Id))) {
+                GeneratedPrice.generatePrices(_context, _service.ApplicationUser.Id);
+            }
+            List<Price> prices = await _context.Price.Include(p => p.Level).Where(p => p.User.Equals(_service.ApplicationUser.Id)).ToListAsync();
+        
+            
               return _context.Price != null ? 
-                          View(await _context.Price.ToListAsync()) :
+                          View(prices) :
                           Problem("Entity set 'ApplicationDbContext.Price'  is null.");
         }
 
@@ -77,7 +97,8 @@ namespace ToDoLife_App.Controllers
                 return NotFound();
             }
 
-            var price = await _context.Price.FindAsync(id);
+            Price price = await _context.Price.Include(p=>p.Level).Where(p=>p.Id==id).FirstAsync();
+
             if (price == null)
             {
                 return NotFound();
@@ -92,16 +113,19 @@ namespace ToDoLife_App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description")] Price price)
         {
+            intUser();
+
             if (id != price.Id)
             {
                 return NotFound();
             }
-
+            ModelState.Remove("Level");
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(price);
+                    price.User=_service.ApplicationUser.Id;
+                    _context.Price.Update(price);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
