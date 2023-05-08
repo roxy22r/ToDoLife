@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ToDoLife_App.Data;
 
@@ -21,9 +16,9 @@ namespace ToDoLife_App.Models
         // GET: UserProgrammConfigs
         public async Task<IActionResult> Index()
         {
-              return _context.UserProgrammConfig != null ? 
-                          View(await _context.UserProgrammConfig.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.UserProgrammConfig'  is null.");
+            return _context.UserProgrammConfig != null ?
+                        View(await _context.UserProgrammConfig.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.UserProgrammConfig'  is null.");
         }
 
         // GET: UserProgrammConfigs/Details/5
@@ -149,14 +144,14 @@ namespace ToDoLife_App.Models
             {
                 _context.UserProgrammConfig.Remove(userProgrammConfig);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UserProgrammConfigExists(int id)
         {
-          return (_context.UserProgrammConfig?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.UserProgrammConfig?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

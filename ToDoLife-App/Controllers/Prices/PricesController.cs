@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ToDoLife_App.Areas;
 using ToDoLife_App.Controllers.Prices;
@@ -38,15 +33,16 @@ namespace ToDoLife_App.Controllers
         public async Task<IActionResult> Index()
         {
             intUser();
-            if (!_context.Price.Any(p=>p.User.Equals(_service.ApplicationUser.Id))) {
+            if (!_context.Price.Any(p => p.User.Equals(_service.ApplicationUser.Id)))
+            {
                 GeneratedPrice.generatePrices(_context, _service.ApplicationUser.Id);
             }
             List<Price> prices = await _context.Price.Include(p => p.Level).Where(p => p.User.Equals(_service.ApplicationUser.Id)).ToListAsync();
-        
-            
-              return _context.Price != null ? 
-                          View(prices) :
-                          Problem("Entity set 'ApplicationDbContext.Price'  is null.");
+
+
+            return _context.Price != null ?
+                        View(prices) :
+                        Problem("Entity set 'ApplicationDbContext.Price'  is null.");
         }
 
         // GET: Prices/Details/5
@@ -97,7 +93,7 @@ namespace ToDoLife_App.Controllers
                 return NotFound();
             }
 
-            Price price = await _context.Price.Include(p=>p.Level).Where(p=>p.Id==id).FirstAsync();
+            Price price = await _context.Price.Include(p => p.Level).Where(p => p.Id == id).FirstAsync();
 
             if (price == null)
             {
@@ -124,7 +120,7 @@ namespace ToDoLife_App.Controllers
             {
                 try
                 {
-                    price.User=_service.ApplicationUser.Id;
+                    price.User = _service.ApplicationUser.Id;
                     _context.Price.Update(price);
                     await _context.SaveChangesAsync();
                 }
@@ -176,15 +172,15 @@ namespace ToDoLife_App.Controllers
             {
                 _context.Price.Remove(price);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PriceExists(int id)
         {
-          return (_context.Price?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Price?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-       
+
     }
 }

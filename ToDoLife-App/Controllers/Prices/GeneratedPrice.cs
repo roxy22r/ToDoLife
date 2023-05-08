@@ -8,19 +8,25 @@ namespace ToDoLife_App.Controllers.Prices
     {
         public static void generatePrices(ApplicationDbContext context, Guid user)
         {
-            for (int level = 1; level <= 100; level++)
+            for (int levelNr = 1; levelNr <= 100; levelNr++)
             {
+                Level level = GenerateLevels.generateLevel(context, user, levelNr);
                 Price initPrice = new Price()
                 {
-                   User = user,
-                   Description= "",
-                   Title="",
-                   Level = GenerateLevels.generateLevel(context,user,level) ,
-                    
+                    User = user,
+                    Description = "",
+                    Title = "",
+                    Level = level,
+
                 };
+                if (levelNr == 1)
+                {
+                    var userToSetLevel = context.Users.Where(u => u.Id.Equals(user)).First();
+                    userToSetLevel.CurrentLevel = level;
+                }
                 context.Add(initPrice);
                 context.SaveChanges();
             }
+        }
     }
-}
 }
