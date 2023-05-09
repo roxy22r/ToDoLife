@@ -1,57 +1,18 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
 
 body {
     margin-bottom: 60px;
-    background-color: #79A7D3;
+    background-color: #99dff2;
 }
 
-label {
-    font-weight: bold;
-}
-.form-control {
-    background-color: #79A7D3;
-    color: white
-}
-.form-group{
-    text-align: center;
-}
-
-th {
-    color: black;
-    text-align: center;
-    border: solid 1px black;
-}
-td {
-    color: black;
-    text-align: center;
-    border: solid 1px black;
-}
-
-header{
-    background-color: black;
-}
-.container-fluid {
-    background-color: #6883BC;
-}
-a{
-    text-decoration: none;
-    font-weight: bold;
-}
 #filterTodoContainer {
     margin-top: 50px;
     list-style: none;
     text-decoration: none;
+}
+button {
+    outline: none;
+}
+
+#submitbtn {
+margin-top:20px;
 }

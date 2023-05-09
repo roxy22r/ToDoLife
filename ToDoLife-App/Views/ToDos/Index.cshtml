@@ -6,9 +6,7 @@
 
 <h1>ToDo-List</h1>
 
-<button>
     <a asp-action="Create" class ="btn btn-primary">Create New</a>
-</button>
 <div id="filterTodoContainer" >
 <li>
     <ul>
@@ -20,27 +18,26 @@
     <ul>
 
 
-<button>
+
     <a asp-action="index" asp-route-today="true" class="btn btn-secondary">ToDosOfToday</a>
-</button>
     </ul>
 </li>
 </div>
 
-<table class="table">
+<table class="table table-dark">
     <thead>
         <tr>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.DueDate)
             </th>
-            <th>
+            <th scope="col" >
                 @Html.DisplayNameFor(model => model.Points)
             </th>
-            <th></th>
-            <th></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -59,13 +56,13 @@
                         <form method="post" asp-action="setTaskCompleted" style="display: inline">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" value=@item.Id name='Id' />
-            <button  type="submit" class="btn btn-link"  class="btn btn-primary" >@item.IsCompleted</button>
+            <button  type="submit" class="btn btn-secondary"  class="btn btn-primary" >@item.IsCompleted</button>
         </form>  
             </td>
             <td>
-               <button><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-dark">Edit</a> </button>
-                    <button><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-dark">Details</a></button>
-                    <button><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-dark">Delete</a></button>
+               <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a> 
+                   <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                   <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-secondary">Delete</a>
             </td>
         </tr>
 }
