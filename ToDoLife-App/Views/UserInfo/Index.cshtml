@@ -3,32 +3,30 @@
 @{
     ViewData["Title"] = "User-Info";
 }
+@{
+    String procentReachingNextLevel = ((@Model.TotalCollectedPoints / 100) * @Model.CurrentPoints).ToString();
+}
+<h1>UserInfo</h1>
 
-<h1>ToDo-List</h1>
 
-<button>
-    <a asp-action="Create">Create New</a>
-</button>
-
-<form asp-action="FilterByIsCompleted">
-    <input type="submit" value="FilterByIsCompleted" class="btn btn-danger" /> |
-</form> 
-
-<button>
-    <a asp-action="index" asp-route-today="true">ToDosOfToday</a>
-</button>
-
-<table class="table">
  
-                @Html.DisplayNameFor(model => model.Level.LevelNumber)
-                @Html.DisplayFor(model => model.Level.LevelNumber)
-
-
+ <h2>
+ @Html.DisplayNameFor(model => model.Level.LevelNumber)
+  @Html.DisplayFor(model => model.Level.LevelNumber)
+ </h2>            
+ <h2>
                 @Html.DisplayNameFor(model => model.Level.LevelTitle)
                 @Html.DisplayFor(model => model.Level.LevelTitle)
-
-               
+ </h2>
+ <h2>
                 @Html.DisplayNameFor(model => model.scoreToReachNextLevel)
                 @Html.DisplayFor(model => model.scoreToReachNextLevel)
+ </h2>
+ @Model.scoreToReachNextLevelProcentage
+<progress id="progressbar" value="@Model.scoreToReachNextLevelProcentage" max="100" style="width:100%; background-color:black; "> 
 
-</table>
+</progress>
+
+ 
+
+ 

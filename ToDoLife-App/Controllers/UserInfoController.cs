@@ -35,35 +35,61 @@ namespace ToDoLife_App.Controllers
         public async Task<IActionResult> Index()
         {
             intUser();
-
             var user = _service.ApplicationUser;
-            if (null == user.CurrentLevel ) {
-                user.CurrentLevel = new Level()
-                {
-                    LevelNumber = 0,
-                    LevelDescription = "Your In The Beginning of Somthing Big",
-                    LevelTitle = "ToDoLife Tint Blob State",
-                    Points = 0,
-                    User = user.Id
-                    
-                 
-                };
+            initLevelZero(user);
+            while (isNextLevelReached(user)) { 
+            scaleLevelIfNeeded(user);
             }
-             await _context.SaveChangesAsync();
-            var nextLevelNr = user.CurrentLevel.LevelNumber + 1;
-            var pointToReachNextLevel = _context.Level.Where(l => l.User.Equals(user.Id)).Where(l => l.LevelNumber == nextLevelNr).First();
+            var scoreToReachNextLevel = getNextLevel(user).Points;
+            var procentage = getProzentageOfReachingLevel(scoreToReachNextLevel, user);
             var dto = new UserInfoDto()
             {
                 Level = user.CurrentLevel,
                 CurrentPoints = user.CurrentPoints,
-                scoreToReachNextLevel = 1,
+                scoreToReachNextLevel = scoreToReachNextLevel,
                 TotalCollectedPoints = user.TotalCollectedPoints,
+                scoreToReachNextLevelProcentage = procentage
 
             };
             return View(dto);
         }
+        private int getProzentageOfReachingLevel(int scoreToReachNextLevel,ApplicationUser user) {
+           return (int)Math.Round((100/(double)scoreToReachNextLevel ) * (double)user.TotalCollectedPoints);
+        } 
+        private bool isNextLevelReached(ApplicationUser user) {
+            var pointsToGetNextLevel = getNextLevel(user).Points;
+        return  0>=(pointsToGetNextLevel- user.TotalCollectedPoints);
+        }
+        private  void initLevelZero(ApplicationUser user) {
+            if (null == user.CurrentLevel)
+            {
+                user.CurrentLevel = new Level()
+                {
+                    LevelNumber = 0,
+                    LevelDescription = "Your In The Beginning of Somthing Big",
+                    LevelTitle = "ToDoLife Tiny Blob State",
+                    Points = 0,
+                    User = user.Id
 
 
+                };
+                 _context.SaveChanges();
+
+            }
+        }
+        private  void scaleLevelIfNeeded(ApplicationUser user) {
+            if (isNextLevelReached(user))
+            {
+                user.CurrentLevel = getNextLevel(user);
+                 _context.SaveChanges();
+
+            }
+
+        }
+
+        private Level getNextLevel(ApplicationUser user) {
+            return _context.Level.Where(l => l.User.Equals(user.Id)).Where(l => l.LevelNumber == (user.CurrentLevel.LevelNumber + 1)).First();
+        }
         // GET: UserController/Details/5
         public ActionResult Details(int id)
         {
