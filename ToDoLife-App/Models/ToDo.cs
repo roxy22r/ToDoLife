@@ -19,8 +19,9 @@ namespace ToDoLife_App.Models
         [Display(Name = "Erledigen bis")]
         [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
+
         [Display(Name = "Preise bei Erledigung")]
-        [Range(1, 100)]
+        [Range(1, 20)]
         public int? Points { get; set; }
     }
 }
