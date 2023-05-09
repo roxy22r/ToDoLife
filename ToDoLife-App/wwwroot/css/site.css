@@ -15,10 +15,10 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: #79A7D3
-    ;
+    background-color: #79A7D3;
 }
-label{
+
+label {
     font-weight: bold;
 }
 .form-control {
@@ -28,9 +28,7 @@ label{
 .form-group{
     text-align: center;
 }
-table {
-    background-color: #79A7D3;
-}
+
 th {
     color: black;
     text-align: center;
@@ -41,10 +39,7 @@ td {
     text-align: center;
     border: solid 1px black;
 }
-button {
-    background-color: #79A7D3;
-    text-align: center;
-}
+
 header{
     background-color: black;
 }
@@ -52,7 +47,11 @@ header{
     background-color: #6883BC;
 }
 a{
-    color: royalblue;
     text-decoration: none;
     font-weight: bold;
+}
+#filterTodoContainer {
+    margin-top: 50px;
+    list-style: none;
+    text-decoration: none;
 }

@@ -234,9 +234,9 @@ namespace ToDoLife_App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost, ActionName("FilterByIsCompleted")]
+        [HttpPost, ActionName("FilterByIsNotCompleted")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> FilterByDone()
+        public async Task<IActionResult> FilterByNotDone()
         {
             intUser();
             userConfig.getConfig().FilterTodoListIsCompleted = !userConfig.getConfig().FilterTodoListIsCompleted;

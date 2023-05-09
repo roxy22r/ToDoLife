@@ -7,16 +7,25 @@
 <h1>ToDo-List</h1>
 
 <button>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class ="btn btn-primary">Create New</a>
 </button>
+<div id="filterTodoContainer" >
+<li>
+    <ul>
 
-<form asp-action="FilterByIsCompleted">
-    <input type="submit" value="FilterByIsCompleted" class="btn btn-danger" /> |
+<form asp-action="FilterByIsNotCompleted">
+    <input type="submit" value="Filter ByIsNotCompleted" class="btn btn-secondary" /> 
 </form> 
+    </ul>
+    <ul>
+
 
 <button>
-    <a asp-action="index" asp-route-today="true">ToDosOfToday</a>
+    <a asp-action="index" asp-route-today="true" class="btn btn-secondary">ToDosOfToday</a>
 </button>
+    </ul>
+</li>
+</div>
 
 <table class="table">
     <thead>
@@ -54,9 +63,9 @@
         </form>  
             </td>
             <td>
-               <button><a asp-action="Edit" asp-route-id="@item.Id">Edit</a> </button>
-                    <button><a asp-action="Details" asp-route-id="@item.Id">Details</a></button>
-                    <button><a asp-action="Delete" asp-route-id="@item.Id">Delete</a></button>
+               <button><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-dark">Edit</a> </button>
+                    <button><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-dark">Details</a></button>
+                    <button><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-dark">Delete</a></button>
             </td>
         </tr>
 }

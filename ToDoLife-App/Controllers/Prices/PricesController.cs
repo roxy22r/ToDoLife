@@ -33,22 +33,34 @@ namespace ToDoLife_App.Controllers
         public async Task<IActionResult> Index()
         {
             intUser();
-            if (!_context.Price.Any(p => p.User.Equals(_service.ApplicationUser.Id)))
+            initGeneratedPriceWhenNeeded();
+
+            return _context.Price != null ?
+                        View( PricesController.GetAllPricesForUser(_context,_service.ApplicationUser.Id)) :
+                        Problem("Entity set 'ApplicationDbContext.Price'  is null.");
+        }
+        private void initGeneratedPriceWhenNeeded() {
+            if (!PricesController.isUserExistingInPrice(_context, _service.ApplicationUser.Id))
             {
                 GeneratedPrice.generatePrices(_context, _service.ApplicationUser.Id);
             }
-            List<Price> prices = await _context.Price.Include(p => p.Level).Where(p => p.User.Equals(_service.ApplicationUser.Id)).ToListAsync();
+        }
+        public static List<Price>  GetAllPricesForUser (ApplicationDbContext context,Guid user) {
+             return  context.Price.Include(p => p.Level).Where(p => p.User.Equals(user)).ToList();
+        }
+        private static bool isUserExistingInPrice (ApplicationDbContext context, Guid user){
+            return context.Price.Any(p => p.User.Equals(user));
+        }
+        private bool validateIsIdOrPriceNotNull(int? id)
+        {
+            return (id == null || _context.Price == null);
 
-
-            return _context.Price != null ?
-                        View(prices) :
-                        Problem("Entity set 'ApplicationDbContext.Price'  is null.");
         }
 
         // GET: Prices/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Price == null)
+            if (validateIsIdOrPriceNotNull(id))
             {
                 return NotFound();
             }
@@ -88,18 +100,22 @@ namespace ToDoLife_App.Controllers
         // GET: Prices/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Price == null)
+            if (validateIsIdOrPriceNotNull(id))
             {
                 return NotFound();
             }
-
-            Price price = await _context.Price.Include(p => p.Level).Where(p => p.Id == id).FirstAsync();
+            Price price = getPriceById(id);
 
             if (price == null)
             {
                 return NotFound();
             }
             return View(price);
+        }
+
+        private Price getPriceById(int? id ) {
+            return _context.Price.Include(p => p.Level).Where(p => p.Id == id).First();
+
         }
 
         // POST: Prices/Edit/5

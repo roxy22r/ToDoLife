@@ -7,5 +7,6 @@
         public Level Level { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public bool IsPriceObtained { get; set; }
     }
 }

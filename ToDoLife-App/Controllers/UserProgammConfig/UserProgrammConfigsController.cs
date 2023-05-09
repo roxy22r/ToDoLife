@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ToDoLife_App.Data;
 
 namespace ToDoLife_App.Models
 {
+    [Authorize]
     public class UserProgrammConfigsController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -44,6 +44,11 @@ namespace ToDoLife_App.Models
                         Problem("Entity set 'ApplicationDbContext.Level'  is null.");
         }
 
+        public static bool isLevelExistingForUser (ApplicationDbContext context, ApplicationUser user,int levelNr) {
+          return context.Price.Where(p => p.Level.User.Equals(user))
+                               .Where(p => p.Level.LevelNumber == levelNr).Any();
+        }
+
         // GET: Levels/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\raksa\\Source\\Repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\ToDoLife-App.csproj": {}
+    "C:\\Users\\raksa\\source\\repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\ToDoLife-App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\raksa\\Source\\Repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\ToDoLife-App.csproj": {
+    "C:\\Users\\raksa\\source\\repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\ToDoLife-App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\raksa\\Source\\Repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\ToDoLife-App.csproj",
+        "projectUniqueName": "C:\\Users\\raksa\\source\\repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\ToDoLife-App.csproj",
         "projectName": "ToDoLife-App",
-        "projectPath": "C:\\Users\\raksa\\Source\\Repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\ToDoLife-App.csproj",
+        "projectPath": "C:\\Users\\raksa\\source\\repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\ToDoLife-App.csproj",
         "packagesPath": "C:\\Users\\raksa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\raksa\\Source\\Repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\obj\\",
+        "outputPath": "C:\\Users\\raksa\\source\\repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -17,5 +17,7 @@ namespace ToDoLife_App.Models
         public string? LevelDescription { get; set; }
         [Display(Name = "Level-Points to reach")]
         public int Points { get; set; }
+
+        public bool isLevelUnlocked { get; set; }
     }
 }

@@ -10,6 +10,8 @@ namespace ToDoLife_App.Areas
         public int CurrentPoints { get; set; }
         public int scoreToReachNextLevelProcentage { get; set; }
 
+        public Price Price { get; set; }
+
 
     }
 }

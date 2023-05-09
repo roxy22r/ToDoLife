@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q80ijMGJ396jOEGtq2mrtLRQZjwCyMLTWcOHokkadVPtaPYAVpCXqSWSagVyiGKd5kqK/K+/vOoN1m2Z8gQkpg==",
+  "dgSpecHash": "gOPjQFQCtaO2TsaH4EwgLpUlo9sRAGdYVddpGcC2iW+Al82wXv5rPCPYI465eaTkI8qMGNYibOCAROaBpyzNYg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\raksa\\Source\\Repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\ToDoLife-App.csproj",
+  "projectFilePath": "C:\\Users\\raksa\\source\\repos\\ValiderUsername\\ToDoLifeApp-M306\\ToDoLife-App\\ToDoLife-App.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\raksa\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\raksa\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

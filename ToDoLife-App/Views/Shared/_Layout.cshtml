@@ -10,8 +10,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark text-white border-bottom box-shadow mb-3 ">
+
                 <img /src ="https://avatars.akamai.steamstatic.com/b9ae05e87a263c37f97e726a6b246c24c5ee6003_full.jpg" height="100" width="100">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ToDoLife_App</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -21,25 +21,24 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ToDos" asp-action="index">ToDo-List</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="ToDos" asp-action="index">ToDo-List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ToDos" asp-action="create">ToDo erstellen</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="ToDos" asp-action="create">ToDo erstellen</a>
                         </li>
                              <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Prices" asp-action="Index">Price</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Prices" asp-action="Index">Price</a>
                         </li>
                         </li>
                              <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UserInfo" asp-action="Index">UserInfo</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="UserInfo" asp-action="Index">UserInfo</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
-            </div>
         </nav>
     </header>
     <div class="container">
